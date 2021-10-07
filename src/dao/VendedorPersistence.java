@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendedorPersistence {
 
@@ -63,6 +65,22 @@ public class VendedorPersistence {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Vendedor> lista(){
+        List<Vendedor> vendedores = new ArrayList<>();
+        try {
+            cnx = BancoDeDados.getConnection();
+            PreparedStatement ps = cnx.prepareStatement("select * from vendedores");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                vendedores.add(new Vendedor(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+            return vendedores;
     }
 
 }

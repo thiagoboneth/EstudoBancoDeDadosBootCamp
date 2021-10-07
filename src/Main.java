@@ -4,16 +4,18 @@ import service.VendedorService;
 
 public class Main {
 
-
     public static void main(String[] args) {
         cadastraVendedor();
 
     }
 
     private static void cadastraVendedor() {
-        VendedorPersistence vendedorPersistence = new VendedorPersistence();
-        VendedorService service = new VendedorService(vendedorPersistence);
-        Vendedor vendedor = new Vendedor("741.258.963-15", "ISMAEL", "RUA F", "SC", "FLORIANOPOLIS");
-        service.salva(vendedor);
+//        VendedorPersistence vendedorPersistence = new VendedorPersistence();
+//        VendedorService service = new VendedorService(vendedorPersistence);
+//        Vendedor vendedor = new Vendedor("741.258.963-15", "ISMAEL", "RUA F", "SC", "FLORIANOPOLIS");
+//        service.salva(vendedor);
+        new VendedorPersistence().lista().forEach(v ->{
+            System.out.println(v.getNome().concat("   ").concat(v.getCodigo()));
+        });
     }
 }
